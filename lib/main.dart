@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Portfolio',
-
       scrollBehavior: MyCustomScrollBehavior(),
       theme: ThemeData(
         fontFamily: GoogleFonts.merriweatherSans.toString(),
