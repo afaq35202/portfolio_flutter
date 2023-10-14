@@ -17,7 +17,7 @@ class Constants {
 
   static const String evvVerificationPlay =
       "${_playStore}com.technolyte.fastnet.evvverification";
-  static const String evvVerificationApp = "";
+  static const String evvVerificationApp = "${_appStore}evv-providersoft/id6449676238";
 
   static const String syedZameenPlay =
       "${_playStore}com.technolyte.syedzameen&hl=en&gl=US";

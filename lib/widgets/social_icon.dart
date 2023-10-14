@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 class SocialIcon extends StatefulWidget {
   final String path;
   final String url;
+  final bool? isMobile;
 
-  const SocialIcon({super.key, required this.path, required this.url});
+  const SocialIcon(
+      {super.key, required this.path, required this.url, this.isMobile});
 
   @override
   State<SocialIcon> createState() => _SocialIconState();
@@ -32,7 +33,11 @@ class _SocialIconState extends State<SocialIcon> {
           });
         },
         onTap: _launchUrl,
-        child: Image.asset(widget.path,width: 50,height: 50,),
+        child: Image.asset(
+          widget.path,
+          width: widget.isMobile != null && widget.isMobile! ? 30 : 50,
+          height: widget.isMobile != null && widget.isMobile! ? 30 : 50,
+        ),
       ),
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/widgets/social_icon.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class BottomHoverWidget extends StatelessWidget {
   final bool isItemHover;
@@ -37,23 +36,25 @@ class BottomHoverWidget extends StatelessWidget {
           alignment: Alignment.centerRight,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                SocialIcon(
-                  path: "assets/play_store.webp",
-                  url: playStoreUrl,
-                ),
-                if (isAppStore)
-                  const SizedBox(
-                    width: 10,
-                  ),
-                if (isAppStore)
+            child: FittedBox(
+              child: Wrap(
+                crossAxisAlignment: WrapCrossAlignment.end,
+                children: [
                   SocialIcon(
-                    path: "assets/app_store.webp",
-                    url: appStoreUrl!,
+                    path: "assets/play_store.webp",
+                    url: playStoreUrl,
                   ),
-              ],
+                  if (isAppStore)
+                    const SizedBox(
+                      width: 10,
+                    ),
+                  if (isAppStore)
+                    SocialIcon(
+                      path: "assets/app_store.webp",
+                      url: appStoreUrl!,
+                    ),
+                ],
+              ),
             ),
           )),
     );

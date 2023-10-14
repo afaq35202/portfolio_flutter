@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:portfolio/utils/custom_scroll.dart';
 
 import 'home_page.dart';
 
@@ -16,7 +15,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Portfolio',
-      scrollBehavior: MyCustomScrollBehavior(),
       theme: ThemeData(
         fontFamily: GoogleFonts.merriweatherSans.toString(),
         textTheme: const TextTheme(

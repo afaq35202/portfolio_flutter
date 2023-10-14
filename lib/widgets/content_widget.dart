@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/data_model/items_data_model.dart';
 import 'package:portfolio/utils/constants.dart';
 
 import 'bottom_hover_widget.dart';
 
 class ContentWidget extends StatefulWidget {
   final bool isMobile;
+  final ItemsDataModel model;
 
-  const ContentWidget({super.key, required this.isMobile});
+  const ContentWidget({super.key, required this.isMobile,required this.model});
 
   @override
   State<ContentWidget> createState() => _ContentWidgetState();
@@ -17,37 +19,34 @@ class _ContentWidgetState extends State<ContentWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 300,
-      width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: widget.isMobile ? 0 : 100),
-      child: InkWell(
-        onTap: () {},
-        onHover: (val) {
-          setState(() {
-            isHover = val;
-          });
-        },
+    return InkWell(
+      onTap: () {},
+      onHover: (val) {
+        isHover = val;
+        setState(() {});
+        print("here is hover");
+      },
+      child: SizedBox(
+        width: widget.isMobile?double.infinity:MediaQuery.of(context).size.width/2,
+        height: widget.isMobile?150:200,
         child: Stack(
           children: [
-            Center(
-              child: ListView.builder(
-                  shrinkWrap: false,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return SizedBox(
-                      width: widget.isMobile
-                          ? MediaQuery.of(context).size.width / 3
-                          : MediaQuery.of(context).size.width / 5,
-                      child: Image.asset(
-                        "assets/audio_converter/image$index.webp",
-                        fit: BoxFit.fill,
-                      ),
-                    );
-                  }),
+            Material(
+              elevation: 10,
+              child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  color: Colors.white,
+                  alignment: Alignment.center,
+                  child:Image.asset(
+                    widget.model.imagePath,
+                  )),
             ),
-            BottomHoverWidget(isItemHover: isHover,isAppStore: false,playStoreUrl: Constants.videoToMp3Play,),
+            BottomHoverWidget(
+              isItemHover: widget.isMobile?true:isHover,
+              isAppStore: widget.model.urlAppStore.isNotEmpty,
+              playStoreUrl: widget.model.urlPlayStore,
+              appStoreUrl: widget.model.urlAppStore,
+            )
           ],
         ),
       ),
