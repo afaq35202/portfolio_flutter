@@ -46,7 +46,7 @@ class BottomHoverWidget extends StatelessWidget {
                   ),
                   if (isAppStore)
                     const SizedBox(
-                      width: 10,
+                      width: 20,
                     ),
                   if (isAppStore)
                     SocialIcon(

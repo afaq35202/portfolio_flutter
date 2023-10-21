@@ -5,9 +5,14 @@ class SocialIcon extends StatefulWidget {
   final String path;
   final String url;
   final bool? isMobile;
+  final bool? isEmail;
 
   const SocialIcon(
-      {super.key, required this.path, required this.url, this.isMobile});
+      {super.key,
+      required this.path,
+      required this.url,
+      this.isMobile,
+      this.isEmail});
 
   @override
   State<SocialIcon> createState() => _SocialIconState();
@@ -22,21 +27,44 @@ class _SocialIconState extends State<SocialIcon> {
     }
   }
 
+  Future<void> _emailLauncher() async {
+    String? encodeQueryParameters(Map<String, String> params) {
+      return params.entries
+          .map((MapEntry<String, String> e) =>
+      '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+          .join('&');
+    }
+// ···
+    final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: widget.url,
+      query: encodeQueryParameters(<String, String>{
+        'subject': '',
+      }),
+    );
+
+    launchUrl(emailLaunchUri);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(isHover ? 0 : 4.0),
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      padding: EdgeInsets.symmetric(vertical: isHover ? 0 : 4.0),
       child: InkWell(
         onHover: (action) {
           setState(() {
             isHover = action;
           });
         },
-        onTap: _launchUrl,
+        onTap: widget.isEmail != null && widget.isEmail!
+            ? _emailLauncher
+            : _launchUrl,
         child: Image.asset(
           widget.path,
-          width: widget.isMobile != null && widget.isMobile! ? 30 : 50,
-          height: widget.isMobile != null && widget.isMobile! ? 30 : 50,
+          width: widget.isMobile != null && widget.isMobile! ? 30 : 40,
+          height: widget.isMobile != null && widget.isMobile! ? 30 : 40,
+          fit: BoxFit.fill,
         ),
       ),
     );

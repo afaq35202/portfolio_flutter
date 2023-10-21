@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/data_model/items_data_model.dart';
-import 'package:portfolio/utils/constants.dart';
 
 import 'bottom_hover_widget.dart';
 
@@ -24,7 +23,6 @@ class _ContentWidgetState extends State<ContentWidget> {
       onHover: (val) {
         isHover = val;
         setState(() {});
-        print("here is hover");
       },
       child: SizedBox(
         width: widget.isMobile?double.infinity:MediaQuery.of(context).size.width/2,

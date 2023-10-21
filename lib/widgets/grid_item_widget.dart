@@ -13,7 +13,7 @@ class GridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+      decoration: BoxDecoration(border: Border.all(color: Colors.grey,width: 0.5)),
       padding: const EdgeInsets.all(20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
