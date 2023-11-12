@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/data_model/items_data_model.dart';
+import 'package:portfolio/utils/constants.dart';
 
 import 'bottom_hover_widget.dart';
 
 class ContentWidget extends StatefulWidget {
-  final bool isMobile;
+  final CheckDevice device;
   final ItemsDataModel model;
 
-  const ContentWidget({super.key, required this.isMobile,required this.model});
+  const ContentWidget({super.key, required this.device, required this.model});
 
   @override
   State<ContentWidget> createState() => _ContentWidgetState();
@@ -25,8 +26,10 @@ class _ContentWidgetState extends State<ContentWidget> {
         setState(() {});
       },
       child: SizedBox(
-        width: widget.isMobile?double.infinity:MediaQuery.of(context).size.width/2,
-        height: widget.isMobile?150:200,
+        width: widget.device == CheckDevice.isMobile||widget.device==CheckDevice.isTablet
+            ? double.infinity
+            : MediaQuery.of(context).size.width / 2.5,
+        height: widget.device == CheckDevice.isMobile||widget.device==CheckDevice.isTablet ? 150 : 200,
         child: Stack(
           children: [
             Material(
@@ -35,12 +38,13 @@ class _ContentWidgetState extends State<ContentWidget> {
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   color: Colors.white,
                   alignment: Alignment.center,
-                  child:Image.asset(
+                  child: Image.asset(
                     widget.model.imagePath,
                   )),
             ),
             BottomHoverWidget(
-              isItemHover: widget.isMobile?true:isHover,
+              isItemHover:
+                  widget.device == CheckDevice.isMobile ? true : isHover,
               isAppStore: widget.model.urlAppStore.isNotEmpty,
               playStoreUrl: widget.model.urlPlayStore,
               appStoreUrl: widget.model.urlAppStore,

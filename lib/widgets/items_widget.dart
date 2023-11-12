@@ -5,9 +5,9 @@ import 'package:portfolio/utils/constants.dart';
 import 'grid_item_widget.dart';
 
 class ItemsWidget extends StatelessWidget {
-  final bool isMobile;
+  final CheckDevice checkDevice;
 
-  const ItemsWidget({super.key, required this.isMobile});
+  const ItemsWidget({super.key, required this.checkDevice});
 
   @override
   Widget build(BuildContext context) {
@@ -50,19 +50,27 @@ class ItemsWidget extends StatelessWidget {
           Constants.kosherApp),
     ];
     double cellWidth = ((MediaQuery.of(context).size.width - 0) / 2);
-    double desiredCellHeight = isMobile ? 200 : 600;
+    double desiredCellHeight = checkDevice == CheckDevice.isMobile
+        ? 200
+        : checkDevice == CheckDevice.isTablet
+            ? 600
+            : 800;
     double childAspectRatio = cellWidth / desiredCellHeight;
     return GridView.builder(
         shrinkWrap: true,
         itemCount: itemsData.length,
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: isMobile ? 1 : 2,
+            crossAxisCount: checkDevice == CheckDevice.isMobile
+                ? 1
+                : checkDevice == CheckDevice.isTablet
+                    ? 2
+                    : 3,
             childAspectRatio: childAspectRatio),
         itemBuilder: (context, index) {
           return GridItem(
             model: itemsData[index],
-            isMobile: isMobile,
+            device: checkDevice,
           );
         });
   }

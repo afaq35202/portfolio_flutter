@@ -31,16 +31,16 @@ class Home extends StatelessWidget {
               height: 50,
             ),
             Responsive(
-                mobile: body(true, context),
-                tablet: body(true, context),
-                desktop: body(false, context)),
+                mobile: body(CheckDevice.isMobile, context),
+                tablet: body(CheckDevice.isTablet, context),
+                desktop: body(CheckDevice.isDesktop, context)),
           ],
         ),
       ),
     ));
   }
 
-  Widget body(bool isMobile, BuildContext context) {
+  Widget body(CheckDevice device, BuildContext context) {
     final mainItem = ItemsDataModel(
         "Audio Converter",
         "assets/video_to_mp3.webp",
@@ -65,7 +65,7 @@ class Home extends StatelessWidget {
                           ColorizeAnimatedText(
                             'AFAQ AWAN',
                             textStyle: TextStyle(
-                                fontSize: isMobile ? 40 : 50,
+                                fontSize: device==CheckDevice.isMobile ? 40 : 50,
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center,
@@ -85,7 +85,7 @@ class Home extends StatelessWidget {
                             textAlign: TextAlign.center,
                             cursor: "|",
                             textStyle: TextStyle(
-                                fontSize: isMobile ? 15 : 20,
+                                fontSize: device==CheckDevice.isMobile ? 15 : 20,
                                 color: Colors.white,
                                 fontWeight: FontWeight.normal,
                                 fontStyle: FontStyle.italic),
@@ -97,7 +97,7 @@ class Home extends StatelessWidget {
                         displayFullTextOnTap: true,
                         stopPauseOnTap: true,
                       ),
-                      if (isMobile)
+                      if (device==CheckDevice.isMobile)
                         const SizedBox(
                           height: 50,
                         ),
@@ -105,7 +105,7 @@ class Home extends StatelessWidget {
                   ),
                 ),
               ),
-              if (!isMobile)
+              if (device!=CheckDevice.isMobile)
                 Image.asset(
                   "assets/profile.png",
                   width: 285,
@@ -118,12 +118,12 @@ class Home extends StatelessWidget {
         Container(
           color: Colors.white,
           width: double.infinity,
-          margin: EdgeInsets.symmetric(horizontal: isMobile ? 0 : 50),
+          margin: EdgeInsets.symmetric(horizontal: device==CheckDevice.isMobile ? 0 : 50),
           child: Column(
             children: [
               Row(
                 children: [
-                  if (!isMobile)
+                  if (device!=CheckDevice.isMobile)
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: const Text(
@@ -141,47 +141,47 @@ class Home extends StatelessWidget {
                         SocialIcon(
                           path: "assets/cv.webp",
                           url: Constants.cvUrl,
-                          isMobile: isMobile,
-                        ), const SizedBox(
+                          isMobile: device==CheckDevice.isMobile,
+                        ),
+                        const SizedBox(
                           width: 15,
                         ),
                         SocialIcon(
                           path: "assets/call.webp",
                           url: Constants.callUrl,
-                          isMobile: isMobile,
+                          isMobile: device==CheckDevice.isMobile,
                         ),
                         const SizedBox(
                           width: 15,
-                        ),SocialIcon(
+                        ),
+                        SocialIcon(
                             path: "assets/gmail.webp",
                             url: Constants.linkdinUrl,
-                            isMobile: isMobile,
-                            isEmail: true
-                        ),
-
+                            isMobile: device==CheckDevice.isMobile,
+                            isEmail: true),
                         const SizedBox(
                           width: 15,
                         ),
                         SocialIcon(
                           path: "assets/whatsapp.webp",
                           url: Constants.whatsappUrl,
-                          isMobile: isMobile,
+                          isMobile: device==CheckDevice.isMobile,
                         ),
                         const SizedBox(
                           width: 15,
-                        ),SocialIcon(
+                        ),
+                        SocialIcon(
                           path: "assets/github.webp",
                           url: Constants.githubUrl,
-                          isMobile: isMobile,
+                          isMobile: device==CheckDevice.isMobile,
                         ),
                         const SizedBox(
                           width: 15,
                         ),
-
                         SocialIcon(
                           path: "assets/linkdin.webp",
                           url: Constants.linkdinUrl,
-                          isMobile: isMobile,
+                          isMobile: device==CheckDevice.isMobile,
                         ),
                         const SizedBox(
                           width: 15,
@@ -202,7 +202,7 @@ class Home extends StatelessWidget {
                       "Audio Converter",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: isMobile ? 30 : 40,
+                          fontSize: device==CheckDevice.isMobile ? 25 : 30,
                           fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
@@ -212,13 +212,13 @@ class Home extends StatelessWidget {
                       "In this project used FFMPEG to perform different operations on audio",
                       style: TextStyle(
                           fontStyle: FontStyle.italic,
-                          fontSize: isMobile ? 13 : 16),
+                          fontSize: device==CheckDevice.isMobile ? 13 : 16),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    ContentWidget(isMobile: isMobile, model: mainItem),
+                    ContentWidget(device: device, model: mainItem),
                     const SizedBox(
                       height: 20,
                     ),
@@ -226,9 +226,15 @@ class Home extends StatelessWidget {
                 ),
               ),
               const Responsive(
-                mobile: ItemsWidget(isMobile: true),
-                tablet: ItemsWidget(isMobile: true),
-                desktop: ItemsWidget(isMobile: false),
+                mobile: ItemsWidget(
+                  checkDevice: CheckDevice.isMobile,
+                ),
+                tablet: ItemsWidget(
+                  checkDevice: CheckDevice.isTablet,
+                ),
+                desktop: ItemsWidget(
+                  checkDevice: CheckDevice.isDesktop,
+                ),
               ),
             ],
           ),
