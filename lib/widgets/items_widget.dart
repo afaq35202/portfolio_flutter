@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/data_model/items_data_model.dart';
 import 'package:portfolio/utils/constants.dart';
-import 'package:portfolio/widgets/bottom_hover_widget.dart';
 
 import 'grid_item_widget.dart';
 

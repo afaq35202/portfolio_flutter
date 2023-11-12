@@ -108,8 +108,9 @@ class Home extends StatelessWidget {
               if (!isMobile)
                 Image.asset(
                   "assets/profile.png",
-                  width: 250,
-                  height: 250,
+                  width: 285,
+                  height: 260,
+                  fit: BoxFit.fill,
                 )
             ],
           ),
