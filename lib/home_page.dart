@@ -6,8 +6,6 @@ import 'package:portfolio/utils/colors.dart';
 import 'package:portfolio/utils/responsive.dart';
 import 'package:portfolio/widgets/social_icon.dart';
 
-import 'data_model/items_data_model.dart';
-import 'widgets/content_widget.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -41,12 +39,6 @@ class Home extends StatelessWidget {
   }
 
   Widget body(CheckDevice device, BuildContext context) {
-    final mainItem = ItemsDataModel(
-        "Audio Converter",
-        "assets/video_to_mp3.webp",
-        "In this project used FFMPEG to perform different operations on audio",
-        Constants.zoomBooksPlay,
-        '');
     return Column(
       children: [
         Container(
@@ -110,7 +102,7 @@ class Home extends StatelessWidget {
                   "assets/profile.png",
                   width: 285,
                   height: 260,
-                  fit: BoxFit.fill,
+                  fit: BoxFit.contain,
                 )
             ],
           ),
@@ -190,40 +182,6 @@ class Home extends StatelessWidget {
                     ),
                   ))
                 ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    Text(
-                      "Audio Converter",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: device==CheckDevice.isMobile ? 25 : 30,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      "In this project used FFMPEG to perform different operations on audio",
-                      style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                          fontSize: device==CheckDevice.isMobile ? 13 : 16),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    ContentWidget(device: device, model: mainItem),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                  ],
-                ),
               ),
               const Responsive(
                 mobile: ItemsWidget(

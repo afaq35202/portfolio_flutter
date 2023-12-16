@@ -32,6 +32,8 @@ class Constants {
   static const String kosherPlay = '${_playStore}com.technolyte.kosher';
   static const String kosherApp = '${_appStore}kosher/id6453168607';
 
+  static const String soundSurpriseCamApp = '${_appStore}sound-surprise-cam/id6470270945?platform=iphone';
+
   static const String githubUrl = 'https://github.com/afaq35202';
   static const String linkdinUrl = 'https://www.linkedin.com/in/afaq-awan-162b10215';
   static const String cvUrl = 'https://drive.google.com/file/d/1G-tsUYkJeDgJ_j9vui49RkPaurKkE-Sx/view?usp=share_link';

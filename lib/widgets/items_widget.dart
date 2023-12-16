@@ -13,6 +13,18 @@ class ItemsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     List<ItemsDataModel> itemsData = [
       ItemsDataModel(
+          "Audio Converter",
+          "assets/video_to_mp3.webp",
+          "In this project used FFMPEG to perform different operations on audio",
+          Constants.zoomBooksPlay,
+          ''),
+      ItemsDataModel(
+          "Sound Surprise Cam",
+          "assets/sound_surprise_cam.webp",
+          "In this app, users can record videos by playing prank sounds to capture the reactions of people.",
+          '',
+          Constants.soundSurpriseCamApp),
+      ItemsDataModel(
           "ZoomBooks",
           "assets/zoombooks.webp",
           "This app makes expense organizing and bookkeeping simple and easy.",

@@ -45,7 +45,6 @@ class _ContentWidgetState extends State<ContentWidget> {
             BottomHoverWidget(
               isItemHover:
                   widget.device == CheckDevice.isMobile ? true : isHover,
-              isAppStore: widget.model.urlAppStore.isNotEmpty,
               playStoreUrl: widget.model.urlPlayStore,
               appStoreUrl: widget.model.urlAppStore,
             )

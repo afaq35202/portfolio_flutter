@@ -3,16 +3,14 @@ import 'package:portfolio/widgets/social_icon.dart';
 
 class BottomHoverWidget extends StatelessWidget {
   final bool isItemHover;
-  final bool isAppStore;
   final String playStoreUrl;
-  final String? appStoreUrl;
+  final String appStoreUrl;
 
   const BottomHoverWidget(
       {super.key,
       required this.isItemHover,
-      required this.isAppStore,
       required this.playStoreUrl,
-      this.appStoreUrl});
+      required this.appStoreUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -40,18 +38,21 @@ class BottomHoverWidget extends StatelessWidget {
               child: Wrap(
                 crossAxisAlignment: WrapCrossAlignment.end,
                 children: [
+                  if(playStoreUrl.isNotEmpty)
                   SocialIcon(
                     path: "assets/play_store.webp",
                     url: playStoreUrl,
+                    decorateIcon: false,
                   ),
-                  if (isAppStore)
+                  if (appStoreUrl.isNotEmpty)
                     const SizedBox(
                       width: 20,
                     ),
-                  if (isAppStore)
+                  if (appStoreUrl.isNotEmpty)
                     SocialIcon(
                       path: "assets/app_store.webp",
-                      url: appStoreUrl!,
+                      url: appStoreUrl,
+                      decorateIcon: false,
                     ),
                 ],
               ),

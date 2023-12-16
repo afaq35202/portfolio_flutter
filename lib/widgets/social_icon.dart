@@ -6,11 +6,13 @@ class SocialIcon extends StatefulWidget {
   final String url;
   final bool? isMobile;
   final bool? isEmail;
+  final bool? decorateIcon;
 
   const SocialIcon(
       {super.key,
       required this.path,
       required this.url,
+        this.decorateIcon,
       this.isMobile,
       this.isEmail});
 
@@ -31,9 +33,10 @@ class _SocialIconState extends State<SocialIcon> {
     String? encodeQueryParameters(Map<String, String> params) {
       return params.entries
           .map((MapEntry<String, String> e) =>
-      '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+              '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
           .join('&');
     }
+
 // ···
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
@@ -60,13 +63,23 @@ class _SocialIconState extends State<SocialIcon> {
         onTap: widget.isEmail != null && widget.isEmail!
             ? _emailLauncher
             : _launchUrl,
-        child: Image.asset(
-          widget.path,
-          width: widget.isMobile != null && widget.isMobile! ? 30 : 40,
-          height: widget.isMobile != null && widget.isMobile! ? 30 : 40,
-          fit: BoxFit.fill,
+        child: widget.decorateIcon!=null&&!widget.decorateIcon!?iconImage():Container(
+          padding: const EdgeInsets.all(2),
+          decoration: BoxDecoration(
+            color: Colors.white30,
+            borderRadius: BorderRadius.circular(8)
+          ),
+          child: iconImage()
         ),
       ),
+    );
+  }
+  Widget iconImage(){
+    return Image.asset(
+      widget.path,
+      width: widget.isMobile != null && widget.isMobile! ? 30 : 40,
+      height: widget.isMobile != null && widget.isMobile! ? 30 : 40,
+      fit: BoxFit.contain,
     );
   }
 }
