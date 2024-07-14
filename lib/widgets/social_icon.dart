@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../utils/responsive.dart';
+
 class SocialIcon extends StatefulWidget {
   final String path;
   final String url;
@@ -52,8 +54,10 @@ class _SocialIconState extends State<SocialIcon> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
+      width: Responsive.isMobile(context)?35:50,
+      height: Responsive.isMobile(context)?35:50,
       duration: const Duration(milliseconds: 200),
-      padding: EdgeInsets.symmetric(vertical: isHover ? 0 : 4.0),
+      padding: EdgeInsets.all( isHover ? 0 : 4.0),
       child: InkWell(
         onHover: (action) {
           setState(() {

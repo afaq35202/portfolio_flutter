@@ -29,16 +29,16 @@ class Home extends StatelessWidget {
               height: 50,
             ),
             Responsive(
-                mobile: body(CheckDevice.isMobile, context),
-                tablet: body(CheckDevice.isTablet, context),
-                desktop: body(CheckDevice.isDesktop, context)),
+                mobile: body(context),
+                tablet: body(context),
+                desktop: body(context)),
           ],
         ),
       ),
     ));
   }
 
-  Widget body(CheckDevice device, BuildContext context) {
+  Widget body(BuildContext context) {
     return Column(
       children: [
         Container(
@@ -57,7 +57,7 @@ class Home extends StatelessWidget {
                           ColorizeAnimatedText(
                             'AFAQ AWAN',
                             textStyle: TextStyle(
-                                fontSize: device==CheckDevice.isMobile ? 40 : 50,
+                                fontSize: Responsive.isMobile(context) ? 40 : 50,
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center,
@@ -77,7 +77,7 @@ class Home extends StatelessWidget {
                             textAlign: TextAlign.center,
                             cursor: "|",
                             textStyle: TextStyle(
-                                fontSize: device==CheckDevice.isMobile ? 15 : 20,
+                                fontSize: Responsive.isMobile(context) ? 15 : 20,
                                 color: Colors.white,
                                 fontWeight: FontWeight.normal,
                                 fontStyle: FontStyle.italic),
@@ -89,7 +89,7 @@ class Home extends StatelessWidget {
                         displayFullTextOnTap: true,
                         stopPauseOnTap: true,
                       ),
-                      if (device==CheckDevice.isMobile)
+                      if (Responsive.isMobile(context))
                         const SizedBox(
                           height: 50,
                         ),
@@ -97,7 +97,7 @@ class Home extends StatelessWidget {
                   ),
                 ),
               ),
-              if (device!=CheckDevice.isMobile)
+              if (!Responsive.isMobile(context))
                 Image.asset(
                   "assets/profile.png",
                   width: 285,
@@ -110,12 +110,12 @@ class Home extends StatelessWidget {
         Container(
           color: Colors.white,
           width: double.infinity,
-          margin: EdgeInsets.symmetric(horizontal: device==CheckDevice.isMobile ? 0 : 50),
+          margin: EdgeInsets.symmetric(horizontal: Responsive.isMobile(context) ? 0 : 50),
           child: Column(
             children: [
               Row(
                 children: [
-                  if (device!=CheckDevice.isMobile)
+                  if (!Responsive.isMobile(context))
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: const Text(
@@ -133,7 +133,7 @@ class Home extends StatelessWidget {
                         SocialIcon(
                           path: "assets/cv.webp",
                           url: Constants.cvUrl,
-                          isMobile: device==CheckDevice.isMobile,
+                          isMobile: Responsive.isMobile(context),
                         ),
                         const SizedBox(
                           width: 15,
@@ -141,7 +141,7 @@ class Home extends StatelessWidget {
                         SocialIcon(
                           path: "assets/call.webp",
                           url: Constants.callUrl,
-                          isMobile: device==CheckDevice.isMobile,
+                          isMobile: Responsive.isMobile(context),
                         ),
                         const SizedBox(
                           width: 15,
@@ -149,7 +149,7 @@ class Home extends StatelessWidget {
                         SocialIcon(
                             path: "assets/gmail.webp",
                             url: Constants.linkdinUrl,
-                            isMobile: device==CheckDevice.isMobile,
+                            isMobile: Responsive.isMobile(context),
                             isEmail: true),
                         const SizedBox(
                           width: 15,
@@ -157,7 +157,7 @@ class Home extends StatelessWidget {
                         SocialIcon(
                           path: "assets/whatsapp.webp",
                           url: Constants.whatsappUrl,
-                          isMobile: device==CheckDevice.isMobile,
+                          isMobile: Responsive.isMobile(context),
                         ),
                         const SizedBox(
                           width: 15,
@@ -165,7 +165,7 @@ class Home extends StatelessWidget {
                         SocialIcon(
                           path: "assets/github.webp",
                           url: Constants.githubUrl,
-                          isMobile: device==CheckDevice.isMobile,
+                          isMobile: Responsive.isMobile(context),
                         ),
                         const SizedBox(
                           width: 15,
@@ -173,7 +173,7 @@ class Home extends StatelessWidget {
                         SocialIcon(
                           path: "assets/linkdin.webp",
                           url: Constants.linkdinUrl,
-                          isMobile: device==CheckDevice.isMobile,
+                          isMobile: Responsive.isMobile(context),
                         ),
                         const SizedBox(
                           width: 15,
@@ -183,17 +183,7 @@ class Home extends StatelessWidget {
                   ))
                 ],
               ),
-              const Responsive(
-                mobile: ItemsWidget(
-                  checkDevice: CheckDevice.isMobile,
-                ),
-                tablet: ItemsWidget(
-                  checkDevice: CheckDevice.isTablet,
-                ),
-                desktop: ItemsWidget(
-                  checkDevice: CheckDevice.isDesktop,
-                ),
-              ),
+              const ItemsWidget(),
             ],
           ),
         )

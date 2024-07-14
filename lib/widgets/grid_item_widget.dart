@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/utils/constants.dart';
 
 import '../data_model/items_data_model.dart';
+import '../utils/responsive.dart';
 import 'content_widget.dart';
 
 class GridItem extends StatelessWidget {
   final ItemsDataModel model;
-  final CheckDevice device;
 
-  const GridItem({super.key, required this.model, required this.device});
+  const GridItem({super.key, required this.model,});
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +26,13 @@ class GridItem extends StatelessWidget {
             model.title,
             textAlign: TextAlign.center,
             style: TextStyle(
-                fontSize: device == CheckDevice.isMobile ? 20 : 25,
+                fontSize: Responsive.isMobile(context) ? 20 : 25,
                 fontWeight: FontWeight.bold),
           ),
           const SizedBox(
             height: 20,
           ),
           ContentWidget(
-            device: device,
             model: model,
           ),
           const Spacer(),
@@ -41,7 +40,7 @@ class GridItem extends StatelessWidget {
             child: Text(
               model.description,
               style:
-                  TextStyle(fontSize: device == CheckDevice.isMobile ? 13 : 16),
+                  TextStyle(fontSize: Responsive.isMobile(context) ? 13 : 16),
               textAlign: TextAlign.center,
             ),
           ),

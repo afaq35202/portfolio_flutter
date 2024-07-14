@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/data_model/items_data_model.dart';
 import 'package:portfolio/utils/constants.dart';
 
+import '../utils/responsive.dart';
 import 'grid_item_widget.dart';
 
 class ItemsWidget extends StatelessWidget {
-  final CheckDevice checkDevice;
 
-  const ItemsWidget({super.key, required this.checkDevice});
+  const ItemsWidget({super.key, });
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class ItemsWidget extends StatelessWidget {
           "Audio Converter",
           "assets/video_to_mp3.webp",
           "In this project used FFMPEG to perform different operations on audio",
-          Constants.zoomBooksPlay,
+          Constants.videoToMp3Play,
           ''),
       ItemsDataModel(
           "Sound Surprise Cam",
@@ -62,9 +62,9 @@ class ItemsWidget extends StatelessWidget {
           Constants.kosherApp),
     ];
     double cellWidth = ((MediaQuery.of(context).size.width - 0) / 2);
-    double desiredCellHeight = checkDevice == CheckDevice.isMobile
+    double desiredCellHeight = Responsive.isMobile(context)
         ? 200
-        : checkDevice == CheckDevice.isTablet
+        : Responsive.isTablet(context)
             ? 600
             : 800;
     double childAspectRatio = cellWidth / desiredCellHeight;
@@ -73,16 +73,15 @@ class ItemsWidget extends StatelessWidget {
         itemCount: itemsData.length,
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: checkDevice == CheckDevice.isMobile
+            crossAxisCount: Responsive.isMobile(context)
                 ? 1
-                : checkDevice == CheckDevice.isTablet
+                : Responsive.isTablet(context)
                     ? 2
                     : 3,
             childAspectRatio: childAspectRatio),
         itemBuilder: (context, index) {
           return GridItem(
             model: itemsData[index],
-            device: checkDevice,
           );
         });
   }

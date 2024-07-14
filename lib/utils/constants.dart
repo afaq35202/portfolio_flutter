@@ -41,4 +41,3 @@ class Constants {
   static const String callUrl = 'tel://+923224022942';
   static const String email = 'afaqawan887@gmail.com';
 }
-enum CheckDevice { isMobile, isTablet, isDesktop }
