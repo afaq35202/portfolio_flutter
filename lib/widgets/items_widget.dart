@@ -31,35 +31,11 @@ class ItemsWidget extends StatelessWidget {
           Constants.zoomBooksPlay,
           Constants.zoomBooksApp),
       ItemsDataModel(
-          "Syed Zameen",
-          "assets/syed_zameen.webp",
-          "This App allow users to buy and rent different properties in major areas of Pakistan.",
-          Constants.syedZameenPlay,
-          Constants.syedZameenApp),
-      ItemsDataModel(
           "Tour Guide",
           "assets/tour_guide.webp",
           "In this app tourists can find local people willing to help them discover the most interesting parts",
           Constants.tourGuidePlay,
           Constants.tourGuideApp),
-      ItemsDataModel(
-          "Devine Care",
-          "assets/devine_care.webp",
-          "With Divine Care, patients can easily request various types of medical assistance",
-          Constants.devineCarePlay,
-          Constants.devineCareApp),
-      ItemsDataModel(
-          "EVV Providersoft",
-          "assets/evv.webp",
-          "EVV verifies the competence, skills, and adherence to professional standards of EVV therapists",
-          Constants.evvVerificationPlay,
-          Constants.evvVerificationApp),
-      ItemsDataModel(
-          "Kosher",
-          "assets/kosher.webp",
-          "Discover & Verify kosher status of products",
-          Constants.kosherPlay,
-          Constants.kosherApp),
     ];
     double cellWidth = ((MediaQuery.of(context).size.width - 0) / 2);
     double desiredCellHeight = Responsive.isMobile(context)

@@ -148,7 +148,7 @@ class Home extends StatelessWidget {
                         ),
                         SocialIcon(
                             path: "assets/gmail.webp",
-                            url: Constants.linkdinUrl,
+                            url: Constants.email,
                             isMobile: Responsive.isMobile(context),
                             isEmail: true),
                         const SizedBox(
